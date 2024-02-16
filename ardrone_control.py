@@ -84,25 +84,25 @@ while 1:
     up = 0
     down = 0
     
-    left_right = round(joystick.get_axis(0),2)
+    left_right = round(joystick.get_axis(pygame.CONTROLLER_AXIS_RIGHTX), 2)
     if left_right < 0:
         left = abs(left_right)
     elif left_right > 0:
         right = left_right
     
-    fw_bw = round(joystick.get_axis(1),2)
+    fw_bw = round(joystick.get_axis(pygame.CONTROLLER_AXIS_RIGHTY), 2)
     if fw_bw < 0:
         fw = abs(fw_bw)
     elif fw_bw > 0:
         bw = fw_bw
         
-    cw_ccw = round(joystick.get_axis(2),2)
+    cw_ccw = round(joystick.get_axis(pygame.CONTROLLER_AXIS_LEFTX), 2)
     if cw_ccw < 0:
         ccw = abs(cw_ccw)
     elif cw_ccw > 0:
         cw = cw_ccw
         
-    up_down = round(joystick.get_axis(3),2)
+    up_down = round(joystick.get_axis(pygame.CONTROLLER_AXIS_LEFTY), 2)
     if up_down < 0:
         up = abs(up_down)
     elif up_down > 0:
@@ -116,7 +116,7 @@ while 1:
         exit()
     
     # Emergency land when both joysticks pressed
-    if joystick.get_button(8) and joystick.get_button(9):
+    if joystick.get_button(pygame.CONTROLLER_BUTTON_LEFTSTICK) and joystick.get_button(pygame.CONTROLLER_BUTTON_RIGHTSTICK):
         emergency()
     
     # Battery level rendering
@@ -195,8 +195,8 @@ while 1:
             drone.close()
             exit()
         elif event.type == pygame.JOYBUTTONDOWN:
-            if event.button == 7:
+            if event.button == pygame.CONTROLLER_BUTTON_START:
                 takeoff()
-            elif event.button == 6:
+            elif event.button == pygame.CONTROLLER_BUTTON_BACK:
                 land()
         
